@@ -1,0 +1,26 @@
+{
+  "name": "m10-team-profile-generator",
+  "version": "1.0.0",
+  "description": "A generator for a profile that adds team members",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BenjaminCottrell/m10-team-profile-generator.git"
+  },
+  "author": "Benjamin Cottrell",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/BenjaminCottrell/m10-team-profile-generator/issues"
+  },
+  "homepage": "https://github.com/BenjaminCottrell/m10-team-profile-generator#readme",
+  "dependencies": {
+    "inquirer": "^8.2.5",
+    "jest": "^24.9.0"
+  }
+}
