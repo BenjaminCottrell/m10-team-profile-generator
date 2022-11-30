@@ -3,10 +3,10 @@ const Manager = require("../lib/Manager");
 describe("Manager", () => {
 
     // tests for Manager need to have their office number
-    it("Can set office via constructor arguments", () => {
+    it("Can set office number via constructor arguments", () => {
         const office = 4;
         const newManager = new Manager('Guy', 1, 'test@email.com', office);
-        expect(newManager.office).toBe(office);
+        expect(newManager.officeNumber).toBe(office);
     });
 
     it("Can set name via constructor arguments.", () => {
@@ -15,12 +15,12 @@ describe("Manager", () => {
         expect(newManager.name).toBe(name);
     });
 
-    // // Intern needs to have name, id, email and office
+    // // Manager needs to have name, id, email and office number
     describe("getOffice", () => {
         it("Can get office number via getOffice()", () => {
             const office = 4;
             const newManager = new Manager('Guy', 1, 'test@email.com', office);
-            expect(newManager.getOffice()).toBe(office);
+            expect(newManager.getOfficeNumber()).toBe(office);
         });
     });
 

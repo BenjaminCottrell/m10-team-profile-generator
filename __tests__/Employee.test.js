@@ -15,7 +15,7 @@ describe("Employee", () => {
         const employeeName = "Fred"  
   
         const newEmployee = new Employee(employeeName);
-        expect(newEmployee.employeeName).toBe(employeeName);
+        expect(newEmployee.name).toBe(employeeName);
     });
 
     it("can set id via constructor argument", () => {
