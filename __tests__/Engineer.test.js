@@ -1,6 +1,7 @@
 const Engineer = require("../lib/Engineer");
 
 describe('Engineer', () => {
+    
     // tests for Engineer need to have the github username
     it("Can set GitHub account via constructor", () => {
         const githubUsername = "GitHubUser";
@@ -22,6 +23,8 @@ describe('Engineer', () => {
         expect(newEngineer.getRole()).toBe(testValue);
         });
     });    
+
+    //the github username should be able to be gotten with the getGithub function
     describe("getGitHub", () => {
         it("Can get GitHub username via getGithub()", () => {
             const role = "GitHubUser";
@@ -29,4 +32,5 @@ describe('Engineer', () => {
             expect(newEngineer.getGithub()).toBe(role);
         });
     });
+    
 });
