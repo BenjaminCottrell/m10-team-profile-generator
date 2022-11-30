@@ -43,18 +43,18 @@ function beginQuestions() {
     message: 'What is their email?',
   }
 ])
-  // take those questions and create a new Manager with the user provided answers
+  // function to use what role has been chosen to determine what additional info the user should input
   .then(function({name, role, id, email}) {
     let roleExtraInfo = "";
     if (role === "Engineer") {
       roleExtraInfo = "Github username";
     } else if (role === "Intern") {
-      roleExtraInfo = "School name";
+      roleExtraInfo = "school name";
     } else {
       roleExtraInfo = "Office Number"
     }
     inquirer.prompt([{
-      message: `Enter team member's ${roleExtraInfo}`,
+      message: `Enter the team member's ${roleExtraInfo}`,
       name: "roleExtraInfo"
   },
   {
@@ -66,6 +66,7 @@ function beginQuestions() {
       ],
       name: "addMembers"
     }])
+    // function to add new members to the team
     .then(function ({roleExtraInfo, addMembers}) {
       let newMember;
       if (role === "Engineer") {
@@ -75,6 +76,7 @@ function beginQuestions() {
       } else {
           newMember = new Manager(name, id, email, roleExtraInfo);
       }
+      // push new member to the teamMembers array
       teamMembers.push(newMember);
       addHtml(newMember)
       .then(function() {
@@ -86,10 +88,7 @@ function beginQuestions() {
     })
   })
   })
-  // push that new Manager to the team members array
-
-  // follow the same pattern for each type of employee
-  // build a function for them that uses inquirer
+}
 
 
 // STRUCTURING IT

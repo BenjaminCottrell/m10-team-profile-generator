@@ -33,7 +33,7 @@ describe("Employee", () => {
         expect(newEmployee.email).toBe(testValue);
     });
   
-// Getter test   
+// Getter tests   
     describe("getName", () => {
         it("can get name of employee via getName", () => {
             const testValue = "Celine";
@@ -41,6 +41,30 @@ describe("Employee", () => {
             const newEmployee = new Employee(testValue);
             expect(newEmployee.getName)
         })
+    });
+
+    describe("getId", () => {
+        it("can get id via getId()", () => {
+            const testValue = 100;
+            const newEmployee = new Employee("Guy", testValue);
+            expect(newEmployee.getId()).toBe(testValue);
+        });
+    });
+        
+    describe("getEmail", () => {
+        it("can get email via getEmail()", () => {
+            const testValue = "test@test.com";
+            const newEmployee = new Employee("Guy", 1, testValue);
+            expect(newEmployee.getEmail()).toBe(testValue);
+        });
+    });
+        
+    describe("getRole", () => {
+        it("getRole() should return \"Employee\"", () => {
+            const testValue = "Employee";
+            const newEmployee = new Employee("Fred", 1, "test@test.com");
+            expect(newEmployee.getRole()).toBe(testValue);
+        });
     });
     
 });
