@@ -10,9 +10,9 @@ describe("Employee", () => {
     });
 
 
-// Tests for Setters
+// Setter tests
     it("can set name via constructor arguments", () => {
-        const employeeName = "Bob"  
+        const employeeName = "Fred"  
   
         const newEmployee = new Employee(employeeName);
         expect(newEmployee.employeeName).toBe(employeeName);
@@ -21,7 +21,7 @@ describe("Employee", () => {
     it("can set id via constructor argument", () => {
         const testValue = 100;  
     
-        const newEmployee = new Employee("Foo", testValue);
+        const newEmployee = new Employee("Guy", testValue);
         expect(newEmployee.id).toBe(testValue);
     });
 
@@ -29,14 +29,14 @@ describe("Employee", () => {
     it("can set email via constructor argument", () => {
         const testValue = "test@testing.com";  
     
-        const newEmployee = new Employee("Foo", 1, testValue);
+        const newEmployee = new Employee("Guy", 1, testValue);
         expect(newEmployee.email).toBe(testValue);
     });
   
-// Tests for Getters    
+// Getter test   
     describe("getName", () => {
         it("can get name of employee via getName", () => {
-            const testValue = "Virginia";
+            const testValue = "Celine";
 
             const newEmployee = new Employee(testValue);
             expect(newEmployee.getName)

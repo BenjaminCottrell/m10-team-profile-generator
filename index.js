@@ -12,8 +12,35 @@ const render = require('./src/page-template.js');
 
 const teamMembers = [];
 
-
+const numValidation = (name) => {
+  let valid = +name
+  return ((valid.toString() !== 'NaN') ? true : 'Not a number. Try again.')
+}
 // function for creating manager - inquirer questions
+const beginQuestions = [
+  {
+    name: 'role',
+    type: 'list',
+    message: 'Which type of Employee do you want to add?',
+    choices: ['Manager', 'Engineer', 'Intern'],
+  },
+  {
+    name: 'name',
+    type: 'input',
+    message: 'What is the employees name?',
+  },
+  {
+    name: 'id',
+    type: 'input',
+    message: 'What is the employee ID number?',
+    validate: numValidation,
+  },
+  {
+    name: 'email',
+    type: 'input',
+    message: 'What is their email?',
+  }
+]
   // take those questions and create a new Manager with the user provided answers
   // push that new Manager to the team members array
 
