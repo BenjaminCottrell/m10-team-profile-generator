@@ -38,38 +38,94 @@ function startHTML(teamMembers) {
             </nav>
         </footer>
     </body>
-    
-    </html>
-    `;
 
-  }
+    </html>`;
+
+  cards = [];
+    for (i = 0; i < teamMembers.length; i++) {
+        if (teamMembers[i].getRole() === "Manager") {
+            const manager = generateManager(teamMembers[i]);
+            cards.push(manager);
+        }
+        if (teamMembers[i].getRole() === "Engineer") {
+            const engineer = generateEngineer(teamMembers[i]);
+            cards.push(engineer);
+        }
+        if (teamMembers[i].getRole() === "Intern") {
+            const intern = generateIntern(teamMembers[i]);
+            cards.push(intern);
+        }
+    }
+
+    employees = cards.join(" ");
+
+    return html + employees;
+}
 
 const generateTeam = team => {
 
     // create the manager html
     const generateManager = manager => {
         return `
-
+        <div class="block rounded-lg shadow-lg bg-slate-100 w-96 text-center m-5 break-words">
+            <div class="py-3 px-6 border-b border-gray-300 bg-rose-700 text-white text-2xl rounded-t-lg">
+                <h2>${manager.name}</h2>
+                <p class="text-xl"><i class="fa-solid fa-mug-hot"></i> Manager</p>
+            </div>
+            <div class="p-6">
+                <ul class="bg-white p-3 border border-gray-300 rounded-md">
+                    <li class="border-b border-gray-300 p-2 pt-0">ID: ${manager.id}</li>
+                    <li class="border-b border-gray-300 p-2">Email: <a href="mailto:${manager.email}"
+                            class="text-rose-600 hover:text-rose-400">${manager.email}</a></li>
+                    <li class="p-2 pb-0">Office number: ${manager.office}</li>
+            </ul>
+        </div>
+    </div>
             `;
     };
 
     // create the html for engineers
     const generateEngineer = engineer => {
-        return `
-
+            return `
+                    <div class="block rounded-lg shadow-lg bg-slate-100 w-96 text-center m-5 break-words">
+                        <div class="py-3 px-6 border-b border-gray-300 bg-rose-700 text-white text-2xl rounded-t-lg">
+                            <h2>${engineer.name}</h2>
+                            <p class="text-xl"><i class="fa-solid fa-code"></i> Engineer</p>
+                        </div>
+                        <div class="p-6">
+                            <ul class="bg-white p-3 border border-gray-300 rounded-md">
+                                <li class="border-b border-gray-300 p-2 pt-0">ID: ${engineer.id}</li>
+                                <li class="border-b border-gray-300 p-2">Email: <a href="mailto:${engineer.email}"
+                                        class="text-rose-600 hover:text-rose-400">${engineer.email}</a></li>
+                                <li class="p-2 pb-0">GitHub: <a href="https://github.com/${engineer.gitHub}" target="_blank"
+                                        class="text-rose-600 hover:text-rose-400">${engineer.gitHub}</a></li>
+                            </ul>
+                        </div>
+                    </div>
             `;
     };
 
     // create the html for interns
     const generateIntern = intern => {
         return `
-
+        <div class="block rounded-lg shadow-lg bg-slate-100 w-96 text-center m-5 break-words">
+        <div class="py-3 px-6 border-b border-gray-300 bg-rose-700 text-white text-2xl rounded-t-lg">
+            <h2>${intern.name}</h2>
+            <p class="text-xl"><i class="fa-solid fa-graduation-cap"></i> Intern</p>
+        </div>
+        <div class="p-6">
+            <ul class="bg-white p-3 border border-gray-300 rounded-md">
+                <li class="border-b border-gray-300 p-2 pt-0">ID: ${intern.id}</li>
+                <li class="border-b border-gray-300 p-2">Email: <a href="mailto:${intern.email}"
+                        class="text-rose-600 hover:text-rose-400">${intern.email}</a></li>
+                <li class="p-2 pb-0">School: ${intern.school}</li>
+            </ul>
+        </div>
+    </div>
             `;
     };
 
     // use the team array to generate pieces of html based on the employee role
-}
+};
 
-module.exports = team => {
-    // template literal - html body that calls the generate team function
-}
+module.exports = startHTML;
