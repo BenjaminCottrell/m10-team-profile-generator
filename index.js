@@ -17,7 +17,9 @@ const numValidation = (name) => {
   return ((valid.toString() !== 'NaN') ? true : 'Not a number. Try again.')
 }
 // function for creating manager - inquirer questions
-const beginQuestions = [
+function beginQuestions() {
+  inquirer.prompt( 
+ [
   {
     name: 'role',
     type: 'list',
@@ -40,8 +42,50 @@ const beginQuestions = [
     type: 'input',
     message: 'What is their email?',
   }
-]
+])
   // take those questions and create a new Manager with the user provided answers
+  .then(function({name, role, id, email}) {
+    let roleExtraInfo = "";
+    if (role === "Engineer") {
+      roleExtraInfo = "Github username";
+    } else if (role === "Intern") {
+      roleExtraInfo = "School name";
+    } else {
+      roleExtraInfo = "Office Number"
+    }
+    inquirer.prompt([{
+      message: `Enter team member's ${roleExtraInfo}`,
+      name: "roleExtraInfo"
+  },
+  {
+      type: "list",
+      message: "Do you want to add more team members?",
+      choices: [
+          "yes",
+          "no"
+      ],
+      name: "addMembers"
+    }])
+    .then(function ({roleExtraInfo, addMembers}) {
+      let newMember;
+      if (role === "Engineer") {
+          newMember = new Engineer(name, id, email, roleExtraInfo);
+      } else if (role === "Intern") {
+          newMember = new Intern(name, id, email, roleExtraInfo);
+      } else {
+          newMember = new Manager(name, id, email, roleExtraInfo);
+      }
+      teamMembers.push(newMember);
+      addHtml(newMember)
+      .then(function() {
+          if (addMembers === "yes") {
+              beginQuestions();
+          } else {
+              finishHtml();
+          }
+    })
+  })
+  })
   // push that new Manager to the team members array
 
   // follow the same pattern for each type of employee
