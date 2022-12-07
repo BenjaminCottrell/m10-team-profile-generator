@@ -4,7 +4,10 @@ const Intern = require('./lib/Intern');
 const inquirer = require('inquirer');
 const path = require('path');
 const fs = require('fs');
-const htmlGenerate = require('./src/htmlGenerate')
+const generateEngineer = require('./src/htmlGenerate');
+const generateIntern = require('./src/htmlGenerate');
+const generateManager = require('./src/htmlGenerate');
+const startHTML = require('./src/htmlGenerate');
 
 const DIST_DIR = path.resolve(__dirname, 'dist');
 const distPath = path.join(DIST_DIR, 'team.html');
@@ -78,7 +81,7 @@ function beginQuestions() {
           }
           // push new member to the teamMembers array
           teamMembers.push(newMember);
-          addHtml(newMember)
+          addToHtml(newMember)
             .then(function () {
               if (addMembers === "yes") {
                 beginQuestions();
@@ -90,19 +93,28 @@ function beginQuestions() {
     })
 }
 
+function addToHtml(member) {
+  const role = member.getRole();
+    if (role === "Engineer") {
+        generateEngineer();
+}   else if (role === "Intern") {
+        generateIntern();
+}   else {
+        generateManager();
+}
+
+};
+
 function finishHtml() {
   fs.writeFile(distPath, htmlGenerate(teamMembers), (err) =>
       err ? console.error(err) : console.log('HTML file saved as index.html in dist folder')
   )
 }
 
-beginQuestions();
+function init() {
+  startHTML();
+  beginQuestions();
+}
 
-// STRUCTURING IT
+init();
 
-// start with manager function, since every team needs a manager
-// at the end of manager function, call a createTeam function
-
-// this function would simply ask the user which type of employee they would like to add, based on their choice, run the correesponding function
-
-// at the end, use fs to write file while sending the team array over to the function you brought in from page-template.js
