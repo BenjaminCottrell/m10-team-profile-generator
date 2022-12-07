@@ -41,28 +41,7 @@ function startHTML(teamMembers) {
 
     </html>`;
 
-//   cards = [];
-//     for (i = 0; i < teamMembers.length; i++) {
-//         if (teamMembers[i].getRole() === "Manager") {
-//             const manager = generateManager(teamMembers[i]);
-//             cards.push(manager);
-//         }
-//         if (teamMembers[i].getRole() === "Engineer") {
-//             const engineer = generateEngineer(teamMembers[i]);
-//             cards.push(engineer);
-//         }
-//         if (teamMembers[i].getRole() === "Intern") {
-//             const intern = generateIntern(teamMembers[i]);
-//             cards.push(intern);
-//         }
-//     }
-
-//     employees = cards.join(" ");
-
-//     return html + employees;
 };
-
-
 
     // create the manager html
     const generateManager = manager => {
